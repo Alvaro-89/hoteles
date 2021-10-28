@@ -1,0 +1,22 @@
+<%# el erb es un tipo de archivo que conecta ruby con html %>
+
+<%# Lo que hace la extensión es quitar todo el código ruby de este archivo y se queda con el html %>
+
+<%# <h2>Aquí es</h2> %>
+<%# <h3>ROLES</h3> %>
+
+<%# <p>Etiqueta ruby CON igual</p> %>
+<!--Se crea con la abreviación pe-->
+<%# <%= @mi_nombre %>
+
+<%# <p>Etiqueta ruby SIN igual</p> %>
+<!--Se crea con la abreviación er-->
+<%# <% @mi_nombre %>
+
+<h1>Crear un nuevo rol</h1>
+
+<%= form_with(model: @rol) do |formulario| %>
+  <%= formulario.label      :rol %>
+  <%= formulario.text_field :rol %>
+  <%= formulario.submit "Crear" %>
+<% end %>

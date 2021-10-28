@@ -1,0 +1,16 @@
+<h2>Registro de una ciudades</h2>
+
+<!-- usar el form_with nos incluye el actions (para llevar los datos a nuestra base de datos), el UTF-8 para los signos en español y el método POST. Además incluye un cifrado automático para evitar que gente externa pueda manipular nuestra base de datos.-->
+<%= form_with(model: @ciudad) do |formulario| %>
+
+  <!--<label for="nombre">Nombre</label>-->
+  <%= formulario.label :nombre %>
+
+  <!--<input type="text">-->
+  <%= formulario.text_field :nombre %>
+
+  <button>Cancelar</button> <!--link_to-->
+
+  <!--<input type="submit" value = "Registrar">-->
+  <%= formulario.submit 'Registrar' %>
+<% end %>
