@@ -1,7 +1,7 @@
 class CiudadesController < ApplicationController
 
   def listar
-    @ciudades = Ciudad.all
+    @lista_ciudades = Ciudad.all
   end
 
   def mostrar_formulario_crear
@@ -15,10 +15,14 @@ class CiudadesController < ApplicationController
     #Guardando los datos💾
     @ciudad = Ciudad.new
     @ciudad.nombre = datos_formulario[:nombre]
-    @ciudad.save
-    
-    #Mostrar la confirmación:
-    puts "GUARDADO".center(20,"*")
+
+    if @ciudad.save
+      #Mostrar la confirmación:
+      # redirect_to "/ciudades"
+      redirect_to ciudades_path
+    else
+      render :mostrar_formulario_crear
+    end
   end
 
 end

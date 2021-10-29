@@ -8,6 +8,11 @@
 
   <!--<input type="text">-->
   <%= formulario.text_field :nombre %>
+  <% if @ciudad.errors[:nombre].any? %>
+    <div>
+      <%= @ciudad.errors[:nombre].first %>
+    </div>
+  <% end %>
 
   <button>Cancelar</button> <!--link_to-->
 
