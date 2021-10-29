@@ -25,4 +25,9 @@ class CiudadesController < ApplicationController
     end
   end
 
+  def editar
+    #extraer el :id de la URL con params[:id]
+    @ciudad = Ciudad.find_by(id: params[:id])
+  end
+
 end
