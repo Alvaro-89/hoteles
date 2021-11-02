@@ -30,4 +30,21 @@ class CiudadesController < ApplicationController
     @ciudad = Ciudad.find_by(id: params[:id])
   end
 
+  def actualizar
+    datos_formulario = params.require(:ciudad).permit(:nombre)
+    @ciudad = Ciudad.find_by(id: params[:id])
+    @ciudad.nombre = datos_formulario[:nombre]
+    if @ciudad.save
+      redirect_to ciudades_path
+    else
+      render :editar
+    end
+  end
+
+  def eliminar
+    @ciudad = Ciudad.find_by(id: params[:id])
+    @ciudad.destroy
+    redirect_to ciudades_path
+  end
+
 end

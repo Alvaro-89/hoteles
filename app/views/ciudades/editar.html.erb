@@ -4,7 +4,7 @@
 
   <%= formulario.label    :nombre %>   
   <%= formulario.text_field    :nombre %>   
-  <% if @ciudad.errors[nombre].first %>
+  <% if @ciudad.errors[:nombre].first %>
     <div>
       <%= @ciudad.errors[:nombre].first %>
     </div>
