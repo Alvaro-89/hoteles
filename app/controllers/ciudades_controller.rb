@@ -1,20 +1,31 @@
 class CiudadesController < ApplicationController
 
+  before_action :asignar_ciudad, only: [:editar, :actualizar, :eliminar]
+
+
+  # GET / ciudades
   def listar
     @lista_ciudades = Ciudad.all
   end
 
+  # GET / ciudades / nuevo
   def mostrar_formulario_crear
     @ciudad = Ciudad.new
   end
 
+  # GET / ciudades / :id / editar
+  def editar
+  end
+
+
+  # POST / ciudades
   def guardar
     #Extraer los datos del formulario:
-    datos_formulario =  params.require(:ciudad).permit(:nombre)#Esto forma un hash
+    datos_formulario = params_ciudad #se iguala al método del private 👇
 
     #Guardando los datos💾
     @ciudad = Ciudad.new
-    @ciudad.nombre = datos_formulario[:nombre]
+    @ciudad.nombre = params_ciudad[:nombre]
 
     if @ciudad.save
       #Mostrar la confirmación:
@@ -25,15 +36,10 @@ class CiudadesController < ApplicationController
     end
   end
 
-  def editar
-    #extraer el :id de la URL con params[:id]
-    @ciudad = Ciudad.find_by(id: params[:id])
-  end
-
+  #PATCH / ciudades / :id
   def actualizar
-    datos_formulario = params.require(:ciudad).permit(:nombre)
-    @ciudad = Ciudad.find_by(id: params[:id])
-    @ciudad.nombre = datos_formulario[:nombre]
+    datos_formulario = params_ciudad
+    @ciudad.nombre = params_ciudad[:nombre]
     if @ciudad.save
       redirect_to ciudades_path
     else
@@ -41,10 +47,23 @@ class CiudadesController < ApplicationController
     end
   end
 
+  # DELETE / ciudades / :id
   def eliminar
-    @ciudad = Ciudad.find_by(id: params[:id])
     @ciudad.destroy
     redirect_to ciudades_path
   end
 
+
+  private # todo lo que esté desde esta línea hacia abajo va a ser privado.
+
+  def asignar_ciudad
+    #extraer el :id de la URL con params[:id]
+    @ciudad = Ciudad.find_by(id: params[:id]) #Este código estaba anteriormente en los métodos editar, actualizar y eliminar. Para no repetir el código y evitar errores, se pasan a un único método que se aplica antes de ciertos métodos específicos (before_action).
+    puts "Antes 🚥".center(50, "*")
+  end
+
+  def params_ciudad
+    return params.require(:ciudad).permit(:nombre) #Esto forma un hash
+  end
+  
 end

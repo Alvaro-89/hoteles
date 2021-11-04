@@ -1,0 +1,52 @@
+@import 'ciudades';
+
+// Todas las variables SCSS van antes del @import de bootrstrap
+$primary: #000;
+$danger: rgb(255, 38, 0);
+$warning: rgb(255, 166, 0);
+
+
+
+@import '~bootstrap/scss/bootstrap';
+
+// Todos los cambios CSS van después del @import de bootstrap
+
+$fondo-gris: #f4f7fa;
+$fondo-menu: #3d4c67;
+
+.btn{
+  border-radius: 2rem;
+}
+
+body{
+  background-color: $fondo-gris;
+}
+
+.menu-vertical{
+  position: fixed;
+  height: 100%;
+  background-color: $fondo-menu;
+  color: white;
+  
+  .titulo{
+    padding: 1rem
+  }
+
+  ul{
+    list-style: none;
+  }
+  
+  li .opcion{
+    padding: 0.5rem 0 0.5rem 0.5rem;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    color: white;
+    cursor: pointer;
+
+    &:hover{
+      background-color: white;
+      color: $fondo-menu;
+    }
+  }
+}

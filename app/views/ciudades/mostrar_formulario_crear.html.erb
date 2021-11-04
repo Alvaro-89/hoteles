@@ -1,21 +1,28 @@
-<h2>Registro de una ciudades</h2>
+<div class="card">
+  <div class="card-body">
 
-<!-- usar el form_with nos incluye el actions (para llevar los datos a nuestra base de datos), el UTF-8 para los signos en español y el método POST. Además incluye un cifrado automático para evitar que gente externa pueda manipular nuestra base de datos.-->
-<%= form_with(model: @ciudad) do |formulario| %>
+    <h2>Registro de una ciudades</h2>
 
-  <!--<label for="nombre">Nombre</label>-->
-  <%= formulario.label :nombre %>
+    <!-- usar el form_with nos incluye el actions (para llevar los datos a nuestra base de datos), el UTF-8 para los signos en español y el método POST. Además incluye un cifrado automático para evitar que gente externa pueda manipular nuestra base de datos.-->
+    <%= form_with(model: @ciudad) do |formulario| %>
 
-  <!--<input type="text">-->
-  <%= formulario.text_field :nombre %>
-  <% if @ciudad.errors[:nombre].any? %>
-    <div>
-      <%= @ciudad.errors[:nombre].first %>
-    </div>
-  <% end %>
+      <!--<label for="nombre">Nombre</label>-->
+      <%= formulario.label :nombre, class: 'form-label' %>
 
-  <button>Cancelar</button> <!--link_to-->
+      <!--<input type="text">-->
+      <%= formulario.text_field :nombre, class: 'form-control mb-3' %>
+      <% if @ciudad.errors[:nombre].any? %>
+        <div>
+          <%= @ciudad.errors[:nombre].first %>
+        </div>
+      <% end %>
 
-  <!--<input type="submit" value = "Registrar">-->
-  <%= formulario.submit 'Registrar' %>
-<% end %>
+      <div class="mb-3 text-end">
+      <%= link_to "Cancelar", ciudades_path, class: "btn btn-light mr-3" %>
+      <%= formulario.submit 'Registrar', class: "btn btn-primary" %> <!-- Es como poner <input type="submit" value = "Registrar">-->
+      </div>
+
+    <% end %>
+
+  </div>
+</div>

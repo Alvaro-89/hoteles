@@ -1,0 +1,43 @@
+<nav class="menu-vertical col-lg-2">
+  <div class="row">
+    <div class="col">
+      <h4 class="titulo text-center">
+      Hoteles 🌴
+      </h4>
+    </div>
+  </div>
+  <div class="container">
+    <ul>
+      <li class="separador mb-1 mt-3">
+        <strong>Ciudades</strong>
+      </li>
+      <li>
+        <%= link_to ciudades_path, class:"opcion" do %>
+          <i class="bi bi-card-checklist"></i>
+          Listar
+        <% end %>
+      </li>
+      <li>
+        <%= link_to nueva_ciudad_path, class:"opcion" do%>
+          <i class="bi bi-plus-circle"></i>
+          Crear
+        <% end %>
+      </li>
+      <li class="separador mb-1 mt-4">
+        <strong>Roles</strong>
+      </li>
+      <li>
+        <%= link_to roles_path, class:"opcion" do%>
+          <i class="bi bi-card-checklist"></i>
+          Listar
+        <% end %>
+      </li>
+      <li>
+        <%= link_to nuevo_rol_path, class:"opcion" do%>
+          <i class="bi bi-plus-circle"></i>
+          Crear
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -1,11 +1,24 @@
 #Esto tiene que ir necesariamente con el mismo nombre del modelo pero con mayúscula
 class RolesController < ApplicationController
-  def crear
+  
+  before_action :asignar_rol, only: [:editar, :actualizar, :eliminar]
+
+  #GET /roles
+  def listar #READ
+    @roles = Rol.all
+  end
+
+  # GET / roles / nuevo
+  def crear #CREATE
     #Este método busca mostrar formulario para guardar roles nuevos.
 
     #GET / roles / nuevo
-    @mi_nombre = "Álvaro González"
     @rol = Rol.new
+  end
+
+  #GET / roles / :id / editar
+  def editar #UPDATE
+    
   end
 
   #POST / roles
@@ -22,9 +35,30 @@ class RolesController < ApplicationController
     end
   end
 
-  #GET /roles
-  def listar
-    @roles = Rol.all
+  #Patch / roles / :id
+  def actualizar
+    datos_formulario = params_rol
+    @rol.rol = params_rol[:rol]
+    if @rol.save
+      redirect_to roles_path
+    else
+      render :editar
+    end
   end
 
+  # delete / roles / :id
+  def eliminar
+    @rol.destroy
+    redirect_to roles_path
+  end
+
+  private
+
+  def asignar_rol
+    @rol = Rol.find_by(id: params[:id])
+  end
+
+  def params_rol
+    return params.require(:rol).permit(:rol)
+  end
 end

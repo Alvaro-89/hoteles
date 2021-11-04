@@ -394,7 +394,7 @@ Cosas deseables del software serían las siguientes:
         end
       ```
 
-    - [ ] Eliminar una ciudad
+    - [x] Eliminar una ciudad
 
       - [x] Entender cómo funciona *eliminar* en Rails
 
@@ -408,28 +408,28 @@ Cosas deseables del software serían las siguientes:
         ciudades_eliminadas = Ciudad.destroy_all
         ```
 
-    - [x] Definir la ruta DELETE
+        - [x] Definir la ruta DELETE
 
         ```ruby
         # config/routes
         delete  'ciudades/:id',   to: 'ciudades#eliminar'
         ```
 
-    - [x] Convertir en botón al texto *Eliminar* del archivo `listar.html.erb` de ciudades
+        - [x] Convertir en botón al texto *Eliminar* del archivo `listar.html.erb` de ciudades
 
         ```ruby
         # app/views/ciudades/listar.html.erb
         <%= link_to "Eliminar", ciudad_path(c), method: :delete %>
         ```
-    - [x] Definir el método que se hará cargo en el controlador *ciudades*
+        - [x] Definir el método que se hará cargo en el controlador *ciudades*
         ```ruby
         # app/controller/ciudades_controller.rb
         def eliminar
         
         end
         ```
-    - [x] Definir la lógica para eliminar el registro
-    - [x] Redirigir a *ciudades_path*
+        - [x] Definir la lógica para eliminar el registro
+        - [x] Redirigir a *ciudades_path*
         ```ruby
         def eliminar
             @ciudad = Ciudad.find_by(id: params[:id])
@@ -437,6 +437,10 @@ Cosas deseables del software serían las siguientes:
             rediret_to ciudades_path
         end
         ```
+
+    - [ ] Limpiar controlador de ciudades
+        - [ ] Entender qué son los filtros
+        - [ ] Utilizarlos para evitar duplicar código al asignar una ciudad.
    1.2. Formulario que me permita introducir los datos del hotel con 1 ciudad registrada en la BD
       - [ ] Consultar todas las ciudades de la BD
       - [ ] Diseñar el formulario para el registro de hotel (¿qué componentes necesitamos?)
