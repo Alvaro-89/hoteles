@@ -1,6 +1,6 @@
 class CiudadesController < ApplicationController
 
-  before_action :asignar_ciudad, only: [:editar, :actualizar, :eliminar]
+  before_action :asignar_ciudad, only: [:mostrar, :editar, :actualizar, :eliminar]
 
 
   # GET / ciudades
@@ -17,6 +17,9 @@ class CiudadesController < ApplicationController
   def editar
   end
 
+  #GET / ciudades / :id
+  def mostrar
+  end
 
   # POST / ciudades
   def guardar
@@ -50,6 +53,9 @@ class CiudadesController < ApplicationController
   # DELETE / ciudades / :id
   def eliminar
     @ciudad.destroy
+    redirect_to ciudades_path
+  rescue #Si uno no pone el nombre del error, corre para cualquier error
+    flash[:error_ciudad] = "No se puede elminar la ciudad, porque hay hoteles registrados"
     redirect_to ciudades_path
   end
 

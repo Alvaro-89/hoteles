@@ -1,6 +1,14 @@
+
+
 <div class="card">
   <div class="card-body">
     <h3>Lista de ciudades registradas</h3>
+
+<% if flash[:error_ciudad] %>
+  <div class="alert alert-warning" role="alert">
+    <%= flash[:error_ciudad] %>
+  </div>
+<% end %>
 
     <%= link_to "Crear nueva ciudad", nueva_ciudad_path %>
 
@@ -16,11 +24,13 @@
             <%= c.id %>
           </td>
           <td>
-            <%= c.nombre %>
+            <%= link_to c.nombre, ciudad_path(c) %>
           </td>
           <td class="text-end">
             <%= link_to "Editar", editar_ciudad_path(c), class: "btn btn-outline-warning" %>
-            <%= link_to "Eliminar", ciudad_path(c), method: :delete, class: "btn btn-outline-danger" %> <!--se puede escribir también como ciudad_delete_path, pero no es lo más común.-->
+            <%= link_to "Eliminar", ciudad_path(c), method: :delete,
+            data: {confirm: "Estás seguro(a) que deseas eliminar esta ciudad?"},
+            class: "btn btn-outline-danger" %> <!--se puede escribir también como ciudad_delete_path, pero no es lo más común.-->
           </td>  
         </tr>
       <% end %>

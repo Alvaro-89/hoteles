@@ -1,25 +1,31 @@
-<h1>Lista de roles 📖</h1>
+<div class="card">
+  <div class="card-body">
+    <h1>Lista de roles 📖</h1>
 
-<%= link_to "Crear nuevo Rol", nuevo_rol_path %>
+    <%= link_to "Crear nuevo Rol", nuevo_rol_path %>
 
-<table>
-  <tr>
-    <th>ID</th>
-    <th>Rol</th>
-    <th>Acciones</th>
-  </tr>
-<% @roles.each do |r| %>
-  <tr>
-    <td>
-      <%= r.id %>
-    </td>
-    <td>
-      <%= r.rol %>
-    </td>
-    <td>
-      <%= link_to "Editar", editar_rol_path(r) %>
-      <%= link_to "Eliminar", rol_path(r), method: :delete %>
-    </td>
-  </tr>
-  <% end %>
-</table>
+    <table class= "table table-hover">
+      <tr>
+        <th>ID</th>
+        <th>Rol</th>
+        <th>Acciones</th>
+      </tr>
+    <% @roles.each do |r| %>
+      <tr>
+        <td>
+          <%= r.id %>
+        </td>
+        <td>
+          <%= r.rol %>
+        </td>
+        <td>
+          <%= link_to "Editar", editar_rol_path(r), class: "btn btn-outline-warning" %>
+          <%= link_to "Eliminar", rol_path(r), method: :delete,
+            class: "btn btn-outline-danger",
+            data: {confirm: "¿Estás seguro(a) que deseas elminiar este rol?"} %>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

@@ -31,7 +31,7 @@ class RolesController < ApplicationController
       #por verdad mostrar algo
       redirect_to roles_path
     else
-      #tomar prestada una vista
+      render :nuevo #tomar prestada una vista
     end
   end
 
