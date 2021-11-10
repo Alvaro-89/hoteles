@@ -1,0 +1,19 @@
+<%# BUSQUEDA DE HOTELES %>
+
+<div class="row">
+
+  <div class="col-lg-2 mb-3">
+  <h4>H.Campestre 🌴</h4>
+  </div>
+
+  <%= form_with(url:"/", method: "get") do |formulario| %>
+    <div class="col-lg-6 mb-3">
+      <%= formulario.text_field :busqueda, class:'form-control' %>
+    </div>
+
+    <div class="col-2">
+      <%= formulario.submit "Buscar", class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+
+</div>

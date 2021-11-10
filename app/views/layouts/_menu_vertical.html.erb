@@ -23,6 +23,23 @@
           Crear
         <% end %>
       </li>
+      
+      <li class="separador mb-1 mt-3">
+        <strong>Habitaciones</strong>
+      </li>
+      <li>
+        <%= link_to habitaciones_path, class:"opcion" do %>
+          <i class="bi bi-card-checklist"></i>
+          Listar
+        <% end %>
+      </li>
+      <li>
+        <%= link_to nueva_habitacion_path, class:"opcion" do%>
+          <i class="bi bi-plus-circle"></i>
+          Crear
+        <% end %>
+      </li>
+
       <li class="separador mb-1 mt-3">
         <strong>Ciudades</strong>
       </li>

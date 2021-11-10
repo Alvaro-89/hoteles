@@ -1,0 +1,42 @@
+<%= form_with(model: p_habitacion) do |formulario| %>
+
+  <%= formulario.label :nombre, class: 'form-label' %>
+  <%= formulario.text_field :nombre, class: 'form-control mb-3' %>
+  <% if p_habitacion.errors[:nombre].any? %>
+    <div class= "alert alert-danger" role="alert">
+      <%= p_habitacion.errors[:nombre].first %>
+    </div>
+  <% end %>
+
+  <%= formulario.label :precio, class: 'form-label' %>
+  <%= formulario.number_field :precio, class: 'form-control mb-3' %>
+  <% if p_habitacion.errors[:precio].any? %>
+    <div class="alert alert-danger" role="alert">
+      <%= p_habitacion.errors[:precio].first %>
+    </div>
+  <% end %>
+
+  <%= formulario.label :hotel_id %>
+  <%= formulario.select :hotel_id,
+    options_from_collection_for_select(p_hoteles, :id, :nombre, p_habitacion.hotel_id),
+    { include_blank: "Selecciona el hotel de la habitación" },
+    class: 'form-select mb-3'  %>
+    <% if p_habitacion.errors[:hotel_id].any? %>
+      <div class="alert alert-danger" role="alert">
+        <%= p_habitacion.errors[:hotel_id].first %>
+      </div>
+    <% end %>
+
+  <%= formulario.label :estado_reserva, class: 'form-check-label' %>
+  <%= formulario.check_box :estado_reserva, class: 'form-check-input mb-3' %>
+  <% if p_habitacion.errors[:estado_reserva].any? %>
+    <div class="alert alert-danger" role="alert">
+      <%= p_habitacion.errors[:estado_reserva].first %>
+    </div>
+  <% end %>
+
+  <div class="mb-3 text-end">
+    <%= link_to "Cancelar", habitaciones_path, class: "btn btn-light mr-3" %>
+    <%= formulario.submit 'Registrar', class: "btn btn-primary" %>
+  </div>
+<% end %>

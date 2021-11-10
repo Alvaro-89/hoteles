@@ -9,7 +9,7 @@
       <th>Precio</th>
       <th>Disponibilidad</th>
       <th>Hotel</th>
-      <th class="text-end">Acciones</th>
+      <th class="text-center">Acciones</th>
     </tr>
     <% @habitaciones.each do |h| %>
       <tr>
@@ -29,12 +29,14 @@
                 "Disponible"
               end %>
         </td>
-        <td>
-          <%= h.hotel.nombre %>
-        </td>
-        <td class="text-end">
-          <span>Editar</span>
-          <span>Eliminar</span>
+        <td> <%= link_to h.hotel.nombre, hotel_path(h.hotel.id) %> </td>
+        <td class="text-center">
+          <%= link_to "Editar", editar_habitacion_path(h), class:"btn btn-outline-warning" %>
+          <%= link_to "Eliminar", habitacion_path(h),
+          class: 'btn btn-outline-danger',
+          method: :delete,
+          data: {confirm: "Confirma que deseas elminar esta habitación"}
+          %>
         </td>
       </tr>
     <% end %>

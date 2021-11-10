@@ -4,6 +4,7 @@ class Habitacion < ApplicationRecord
   has_many :usuarios, through: :reservas
 
   validates :nombre, presence: true
-  validates :nombre, uniqueness: true
+  validates :precio, presence: true
+  validates :hotel_id, presence: true
 
 end
