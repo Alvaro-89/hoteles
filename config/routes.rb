@@ -3,7 +3,13 @@ Rails.application.routes.draw do
   
 
   # Principal
-  root 'paginas#principal'
+  root  'paginas#principal'
+  get   'paginas/:id_hotel',            to:'paginas#info_hotel',  as:'info_hotel'
+  get   'paginas/ciudades/:id_ciudad',  to:'paginas#info_ciudad', as:'info_ciudad'
+  get   'registro',                     to:'paginas#registro',    as:'registro'
+
+  #Registros
+  post 'usuarios',          to:'registros#guardar',   as:'usuarios'
 
   #Roles
   get 'roles'               ,to: 'roles#listar'     ,as: 'roles' #as 'roles' es para darle un alias.

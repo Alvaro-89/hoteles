@@ -1,19 +1,27 @@
 <%# BUSQUEDA DE HOTELES %>
 
-<div class="row">
 
-  <div class="col-lg-2 mb-3">
-  <h4>H.Campestre 🌴</h4>
-  </div>
+<div class="pt-5">
 
-  <%= form_with(url:"/", method: "get") do |formulario| %>
-    <div class="col-lg-6 mb-3">
-      <%= formulario.text_field :busqueda, class:'form-control' %>
+    <h3>Hoteles 🌴</h3>
+    <div class="row">
+      <% @hoteles_encontrados.each do |he| %>
+        
+        <%= link_to info_hotel_path(he), class:"w-25 m-2 text-decoration-none" do %>
+          <%= render "tarjeta", p_titulo: he.nombre, p_subtitulo: he.ciudad.nombre %>
+        <% end %>
+
+      <% end %>
+
+    <h3>Ciudades 🌆</h3>
+    <div class="row">
+      <% @ciudades_encontradas.each do |ce| %>
+
+        <%= link_to info_ciudad_path(ce), class:"w-25 m-2 text-decoration-none" do %>
+          <%= render "tarjeta", p_titulo: ce.nombre, p_subtitulo: "Hoteles #{ce.hoteles.count}" %>
+        <% end %>
+
+      <% end %>
     </div>
-
-    <div class="col-2">
-      <%= formulario.submit "Buscar", class: 'btn btn-primary' %>
-    </div>
-  <% end %>
-
 </div>
+
