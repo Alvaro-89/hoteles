@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get   'registro',                     to:'paginas#registro',    as:'registro'
 
   #Registros
-  post 'usuarios',          to:'registros#guardar',   as:'usuarios'
+  post 'usuarios',          to:'registros#guardar',   as:'usuarios' #Crear ususarios normales (clientes)
 
   #Roles
   get 'roles'               ,to: 'roles#listar'     ,as: 'roles' #as 'roles' es para darle un alias.

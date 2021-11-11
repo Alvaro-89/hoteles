@@ -1,66 +1,69 @@
-<h3 class="mt-5">REGISTRO DE USUARIOS</h3>
-
-<div class="card w-25">
-  <div class="card-body">
-    <%= form_with(model: @usuario) do |formulario| %>
-
-      <!--nombre-->
-      <div class="mb-3">
-        <%= formulario.label      :nombre, class:'form-label'%>
-        <%= formulario.text_field :nombre, class:'form-control' %>
-        <% if @usuario.errors[:nombre].any? %>
-          <div>
-            <%= @usuario.errors[:nombre].first %>
-          </div>
-        <% end %>
+<div class="row justify-content-center">
+  <div class="card w-25 mt-5">
+    <div class="card-body">
+      <div class="card-title">
+        <h4 class="mt-1 mb-4 text-center">Registrar nuevo usuario</h4>
       </div>
+      <%= form_with(model: @usuario) do |formulario| %>
 
-      <!--identificación-->
-      <div class="mb-3">
-        <%= formulario.label      :identificacion, class:'form-label'%>
-        <%= formulario.text_field :identificacion, class:'form-control' %>
-        <% if @usuario.errors[:identificacion].any? %>
-          <div>
-            <%= @usuario.errors[:identificacion].first %>
-          </div>
-        <% end %>
-      </div>
+        <!--nombre-->
+        <div class="mb-3">
+          <%= formulario.label      :nombre, class:'form-label'%>
+          <%= formulario.text_field :nombre, class:'form-control' %>
+          <% if @usuario.errors[:nombre].any? %>
+            <div>
+              <%= @usuario.errors[:nombre].first %>
+            </div>
+          <% end %>
+        </div>
 
-      <!--telefono-->
-      <div class="mb-3">
-        <%= formulario.label      :telefono, class:'form-label'%>
-        <%= formulario.text_field :telefono, class:'form-control' %>
-        <% if @usuario.errors[:telefono].any? %>
-          <div>
-            <%= @usuario.errors[:telefono].first %>
-          </div>
-        <% end %>
-      </div>
+        <!--identificación-->
+        <div class="mb-3">
+          <%= formulario.label      :num_identificacion, class:'form-label'%>
+          <%= formulario.text_field :num_identificacion, class:'form-control' %>
+          <% if @usuario.errors[:num_identificacion].any? %>
+            <div>
+              <%= @usuario.errors[:num_identificacion].first %>
+            </div>
+          <% end %>
+        </div>
 
-      <!--password-->
-      <div class="mb-3">
-        <%= formulario.label          :password, class:'form-label'%>
-        <%= formulario.password_field :password, class:'form-control' %>
-        <% if @usuario.errors[:password].any? %>
-          <div>
-            <%= @usuario.errors[:password].first %>
-          </div>
-        <% end %>
-      </div>
+        <!--telefono-->
+        <div class="mb-3">
+          <%= formulario.label      :telefono, class:'form-label'%>
+          <%= formulario.text_field :telefono, class:'form-control' %>
+          <% if @usuario.errors[:telefono].any? %>
+            <div>
+              <%= @usuario.errors[:telefono].first %>
+            </div>
+          <% end %>
+        </div>
 
-      <!--password_confirmation-->
-      <div class="mb-3">
-        <%= formulario.label          :password_confirmation, class:'form-label'%>
-        <%= formulario.password_field :password_confirmation, class:'form-control' %>
-        <% if @usuario.errors[:password_confirmation].any? %>
-          <div>
-            <%= @usuario.errors[:password_confirmation].first %>
-          </div>
-        <% end %>
-      </div>
+        <!--password-->
+        <div class="mb-3">
+          <%= formulario.label          :password, class:'form-label'%>
+          <%= formulario.password_field :password, class:'form-control' %>
+          <% if @usuario.errors[:password].any? %>
+            <div>
+              <%= @usuario.errors[:password].first %>
+            </div>
+          <% end %>
+        </div>
 
-    <%= formulario.submit class:'btn btn-primary' %>
+        <!--password_confirmation-->
+        <div class="mb-3">
+          <%= formulario.label          :password_confirmation, class:'form-label'%>
+          <%= formulario.password_field :password_confirmation, class:'form-control' %>
+          <% if @usuario.errors[:password_confirmation].any? %>
+            <div>
+              <%= @usuario.errors[:password_confirmation].first %>
+            </div>
+          <% end %>
+        </div>
 
-    <% end %>
+      <%= formulario.submit class:'btn btn-primary' %>
+
+      <% end %>
+    </div>
   </div>
 </div>

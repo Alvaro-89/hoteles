@@ -14,7 +14,7 @@ Cosas deseables del software serían las siguientes:
 
 ## Funcionalidades
 
-1. Registrar Hoteles (CRUD)
+1. Registrar Hoteles (CRUD) ✅
 
    1.1. ✅ Registrar al menos una ciudad (CRUD Completo de ciudades)
 
@@ -24,12 +24,10 @@ Cosas deseables del software serían las siguientes:
             ```ruby
             # Primera forma de registrar una ciudad
             ciudad = Ciudad.create(nombre: 'Moscú') # Automaticamente guarda el registro en la tabla
-
             # Segunda forma para registrar una ciudad
             ciudad = Ciudad.new
             ciudad.nombre = "Londres"
             ciudad.save
-
             # Tercera forma para registrar un ciudad
             ciudad = Ciudad.new do |c|
                 c.nombre = "Berlín"
@@ -55,7 +53,6 @@ Cosas deseables del software serían las siguientes:
         ```ruby
         # app/controllers/ciudades_controller.rb
         class CiudadesController < ApplicationController
-
             def mostrar_formulario_crear
                 
             end
@@ -114,11 +111,9 @@ Cosas deseables del software serían las siguientes:
         ```ruby
         # app/controller/ciudades_controller.rb
         class CiudadesController < ApplicationController
-
             def mostrar_formulario_crear
                 @ciudad = Ciudad.new
             end
-
             def guardar
                 # extraer los datos del formulario 📦
                 datos_formulario = params.require(:ciudad).permit(:nombre) # Hash
@@ -194,7 +189,6 @@ Cosas deseables del software serían las siguientes:
             ```ruby
             class Ciudad < ApplicationRecord
                 has_many :hoteles # una ciudad tiene muchos hoteles
-
                 validates :nombre, presence: true
                 validates :nombre, uniqueness: true
             end
@@ -223,7 +217,6 @@ Cosas deseables del software serían las siguientes:
 
             ```ruby
             <h2>Registro de una ciudad</h2>
-
             <%= form_with(model: @ciudad) do |formulario| %>
                 
                 <!-- <label id="nombre" >Nombre</label> -->
@@ -235,12 +228,9 @@ Cosas deseables del software serían las siguientes:
                         <%= @ciudad.errors[:nombre].first %>
                     </div>
                 <% end %>
-
                 <button>Cancelar</button> <!-- link_to -->
-
                 <!-- <input type="submit" value="Registrar"> -->
                 <%= formulario.submit 'Registrar' %>
-
             <% end %>
             ```
 
@@ -297,7 +287,6 @@ Cosas deseables del software serían las siguientes:
         ciudad = Ciudad.find_by(id: 18)         # 1. Buscar el registro por ID
         ciudad.nombre = "arequipa"              # 2. Cambiar el dato de los campos que me interesa
         ciudad.save                             # 3. Guardar los cambios en la BD
-
         # segunda forma de actualizar un dato
         ciudad = Ciudad.find_by(id: 16)         # 1. Buscar el registro por ID
         ciudad.update(nombre: 'Seul')           # 2. Actualizar el registro con el método .update
@@ -358,7 +347,6 @@ Cosas deseables del software serían las siguientes:
             ```ruby
             # config/routes.rb
               patch 'ciudades/:id',   to: 'ciudades#actualizar', as: 'ciudad'
-
             ```
 
             ```html
@@ -414,10 +402,8 @@ Cosas deseables del software serían las siguientes:
         # Forma 1
         cuidad = Ciudad.find_by(id: 22)
         ciudad.destroy
-
         # Forma 2
         ciudad = Ciudad.destroy_by(id: 19)
-
         # Forma 3 ⚠ ELIMINAR TODO
         ciudades_eliminadas = Ciudad.destroy_all
         ```
@@ -435,20 +421,15 @@ Cosas deseables del software serían las siguientes:
           # app/views/ciudades/listar.html.erb
           <%= link_to "Eliminar", ciudad_path(c), method: :delete %>
           ```
-
       - [x] Definir el método que se hará cargo en el controlador *ciudades*
-
           ```ruby
           # app/controller/ciudades_controller.rb
           def eliminar
           
           end
           ```
-
       - [x] Definir la lógica para eliminar el registro
-
       - [x] Redirigir a *ciudades_path*
-
           ```ruby
           def eliminar
               @ciudad = Ciudad.find_by(id: params[:id])
@@ -456,31 +437,23 @@ Cosas deseables del software serían las siguientes:
               rediret_to ciudades_path
           end
           ```
-
     - [x] Limpiar controlador de ciudades
-
       - [x] Entender qué son los filtros
-
         ```ruby
         # app/controllers/ciudades_controller.rb
         class CiudadesController < ApplicationController
-
             before_action :antes_de_la_accion
             after_action  :despues_de_la_accion
-
             def listar
                 @lista_ciudades = Ciudad.all
             end
-
             def mostrar_formulario_crear
                 @ciudad = Ciudad.new
             end
-
             def editar
                 # recuperamos el :id de la URL 📦 y lo buscamos en la base de datos
                 @ciudad = Ciudad.find_by(id: params[:id])
             end
-
             def guardar
                 # extraer los datos del formulario 📦
                 datos_formulario = params.require(:ciudad).permit(:nombre) # Hash
@@ -495,7 +468,6 @@ Cosas deseables del software serían las siguientes:
                     render :mostrar_formulario_crear
                 end
             end
-
             def actualizar
                 datos_formulario = params.require(:ciudad).permit(:nombre)
                 @ciudad = Ciudad.find_by(id: params[:id])
@@ -506,44 +478,33 @@ Cosas deseables del software serían las siguientes:
                     render :editar
                 end
             end
-
             def eliminar
                 @ciudad = Ciudad.find_by(id: params[:id])
                 @ciudad.destroy
                 redirect_to ciudades_path
             end
-
             private # Todo lo que está abajo 👇👇 es PRIVADO
             
             def antes_de_la_accion
                 puts "ANTES 🚥".center(50, "*")
             end
-
             def despues_de_la_accion
                 puts "DESPUES 😴".center(50, "*")
             end
-
         end
         ```
-
       - [X] Utilizarlos para evitar duplicar código al asignar una ciudad
-
         ```ruby
         class CiudadesController < ApplicationController
-
             before_action :asignar_ciudad, only: [:editar, :actualizar, :eliminar]
-
             def listar
                 @lista_ciudades = Ciudad.all
             end
-
             def mostrar_formulario_crear
                 @ciudad = Ciudad.new
             end
-
             def editar
             end
-
             def guardar
                 # extraer los datos del formulario 📦
                 datos_formulario = params.require(:ciudad).permit(:nombre) # Hash
@@ -558,7 +519,6 @@ Cosas deseables del software serían las siguientes:
                     render :mostrar_formulario_crear
                 end
             end
-
             def actualizar
                 datos_formulario = params.require(:ciudad).permit(:nombre)
                 @ciudad.nombre = datos_formulario[:nombre]
@@ -568,12 +528,10 @@ Cosas deseables del software serían las siguientes:
                     render :editar
                 end
             end
-
             def eliminar
                 @ciudad.destroy
                 redirect_to ciudades_path
             end
-
             private # Todo lo que está abajo 👇👇 es PRIVADO
             
             def asignar_ciudad
@@ -581,32 +539,24 @@ Cosas deseables del software serían las siguientes:
                 @ciudad = Ciudad.find_by(id: params[:id])
                 puts "ANTES ASIGNAR UNA CIUDAD".center(50, "🚥")
             end
-
         end
         ```
-
       - [x] Utilizar un método *params_ciudad* para extraer los datos del formulario en 1 solo lugar
-
         ```ruby
         # app/controllers/ciudades_controller.rb
         class CiudadesController < ApplicationController
-
             before_action :asignar_ciudad, only: [:editar, :actualizar, :eliminar]
-
             # GET /ciudades
             def listar
                 @lista_ciudades = Ciudad.all
             end
-
             # GET /ciudades/nuevo
             def mostrar_formulario_crear
                 @ciudad = Ciudad.new
             end
-
             # GET /ciudades/:id/editar
             def editar
             end
-
             # POST /ciudades
             def guardar
                 # Guardando los datos 💾
@@ -619,7 +569,6 @@ Cosas deseables del software serían las siguientes:
                     render :mostrar_formulario_crear
                 end
             end
-
             # PATH /ciudades/:id
             def actualizar
                 @ciudad.nombre = params_ciudad[:nombre]
@@ -629,13 +578,11 @@ Cosas deseables del software serían las siguientes:
                     render :editar
                 end
             end
-
             # DELETE /ciudades/:id
             def eliminar
                 @ciudad.destroy
                 redirect_to ciudades_path
             end
-
             private # Todo lo que está abajo 👇👇 es PRIVADO
             
             # recuperamos el :id de la URL 📦 y lo buscamos en la base de datos
@@ -643,85 +590,62 @@ Cosas deseables del software serían las siguientes:
                 @ciudad = Ciudad.find_by(id: params[:id])
                 puts "ANTES ASIGNAR UNA CIUDAD".center(50, "🚥")
             end
-
             # extraer los datos del formulario 📦
             def params_ciudad
                 return params.require(:ciudad).permit(:nombre)
             end
         end
         ```
-
    1.2. Configuración de Bootstrap con yarn
-
     - [x] Instalar yarn
-
         ```bash
         # Nos funcionó con gitbash
         npm -v
         npm install -g yarn
         yarn -v
         ```
-
     - [x] Agregar los paquetes de bootstrap
-
         ```bash
         yarn add bootstrap
         ```
-
     - [x] Agregar los paquetes de popperjs
-
         ```bash
         yarn add @popperjs/core
         ```
-
     - [x] Crear el directorio *css* en la carpeta *app/ javascript*
-
     - [x] Crear el archivo de inicio *main.scss*
-
     - [x] Importar a *app/javascript/application.js* el paquete de bootstrap
-
         ```javascript
         // app/javascript/packs/application.js
         // This file is automatically compiled by Webpack, along with any other files
         // present in this directory. You're encouraged to place your actual application logic in
         // a relevant structure within app/javascript and only use these pack files to reference
         // that code so it'll be compiled.
-
         import Rails from "@rails/ujs"
         import Turbolinks from "turbolinks"
         import * as ActiveStorage from "@rails/activestorage"
         import "channels"
-
         // Configurado JS de bootstrap
         import 'bootstrap'  
         // Configura CSS de bootstrap
         import 'css/main'   
-
         Rails.start()
         Turbolinks.start()
         ActiveStorage.start()
         ```
-
         ```scss
         // app/javascript/css/main.scss
         @import '~bootstrap/scss/bootstrap';
         ```
-
    1.3. Crear un parcial para el menú lateral
-
     - [x] Crear un archivo que comienza con *_menu_vertical.html.erb*. RECORDAR: debe comenzar con _
-
     - [x] Llamar el parcial en la vista que quiera
-
    1.4. CRUD Hoteles
-
     1.4.1. Crear un Hotel con un ciudad
-
       - [x] La ruta para mostrar el formulario
       - [x] El controlador con el método
       - [x] La vista para mostrar el formulario
       - [x] Crear un hotel por consola para aprender cómo funciona
-
         ```ruby
         # Primera forma de registrar por referencia
         ciudad = Ciudad.find_by(id: 29) # me trae la ciudad con id 29
@@ -730,7 +654,6 @@ Cosas deseables del software serían las siguientes:
         hotel.estrellas = 5
         hotel.ciudad = ciudad
         hotel.save
-
         # Segunda forma de registrar por el ID de la ciudad
         hotel = Hotel.new
         hotel.nombre = "Los balcones"
@@ -738,9 +661,7 @@ Cosas deseables del software serían las siguientes:
         hotel.ciudad_id = 35 # id de la ciudad
         hotel.save
         ```
-
       - [x] Consultar todas las ciudades de la BD
-
         ```ruby
         # app/controllers/hoteles_controller.rb
         # GET /hoteles/nuevo
@@ -749,13 +670,10 @@ Cosas deseables del software serían las siguientes:
             @ciudades = Ciudad.all
         end
         ```
-
       - [x] Diseñar el formulario para el registro de hotel (¿qué componentes necesitamos?)
-
         ```htm
         <!-- app/views/hoteles/nuevo.html.erb -->
         <h1>FORMULARIO para el hotel</h1>
-
         <%= form_with(model: @hotel) do |formulario| %>
             <div class="mb-3">
                 <%= formulario.label        :nombre, class: 'form-label' %>
@@ -766,7 +684,6 @@ Cosas deseables del software serían las siguientes:
                     </div>
                 <% end %>
             </div>
-
             <div class="mb-3">
                 <%= formulario.label        :estrellas, class: 'form-label' %> 
                 <%= formulario.number_field :estrellas, class: 'form-control' %>
@@ -776,7 +693,6 @@ Cosas deseables del software serían las siguientes:
                     </div>
                 <% end %>
             </div>
-
             <div class="mb-3">
                 <%= formulario.label    :ciudad_id %>
                 <%= formulario.select   :ciudad_id,
@@ -789,9 +705,7 @@ Cosas deseables del software serían las siguientes:
                     </div>
                 <% end %>
             </div>
-
             <%= formulario.submit "Crear" %>
-
         <% end %>
         ```
 
@@ -809,7 +723,6 @@ Cosas deseables del software serían las siguientes:
                 render :nuevo
             end
         end
-
         private
         def params_hotel
             return params.require(:hotel).permit(:nombre, :estrellas, :ciudad_id)
@@ -848,18 +761,117 @@ Cosas deseables del software serían las siguientes:
 
       - [x] Capturar errores en los métodos utilizando rescue
 
-2. Registrar Habitaciones
+2. Registrar Habitaciones ✅
 
-    2.1. Crear habitaciones
-    2.2. Consultar/Listar habitaciones
+    2.1. Crear habitaciones ✅
+    2.2. Consultar/Listar habitaciones ✅
     2.3. Actualizar habitaciones
-    2.4. Eliminar habitaciones
+    2.4. Eliminar ✅
 
 3. Buscar hoteles (por nombre) 🔁
+
+    3.1. Diseñar un wireframe
+
+     - [x] Encontrar una referencia
+     - [x] Diseñar un wireframe
+
+    3.2. Configurar las rutas
+
+     - [x] Definir una ruta para la vista principal
+
+        ```ruby
+        # config/routes.rb
+        # Principal
+        root 'paginas#principal'
+        ```
+
+    3.3. Definir el controlador que se hará cargo de la vista
+
+     - [x] Crear el archivo `paginas_controller.rb`
+     - [x] Definir el método `principal`
+     - [x] Crear el archivo en `app/views/paginas/principal.html.erb`
+
+        3.3.1. Crear un layout específico para los clientes
+
+          - [x] Crear el archivo en la carpeta de *app/views/layouts/layout_cliente.html.erb*
+          - [x] Definir en el controlador el layout a utilizar
+          - [x] Definir la estructura HTML del nuevo layout
+
+    3.4. Definir el método que se hará cargo de la lógica
+
+     - [x] En la vista colocar un *input* para escribir el nombre de ciudad/hotel
+     - [x] Analizar la lógica para mostrar el resultado
+     - [ ] Definir las tarjetas donde se mostrará el resultado
+
+       - [x] Crear un archivo nuevo que se llame *_tarjeta.html.erb* en la carpeta *app/views/paginas*
+       - [x] Definir una ruta para mostrar la información de 1 solo hotel
+
+       ```ruby
+       #config/routes.rb
+        get   'paginas/:id_hotel', to: 'paginas#info_hotel', as: 'info_hotel'
+       ```
+
+       - [x] Definir el método que  mostrará la vista en el controlador de páginas
+
+       ```ruby
+       
+        # GET /paginas/:id_hotel
+        def info_hotel
+            
+        end
+       ```
+
+       - [x] Crear el archivo *info_hotel.html.erb* para mostrar la información detallada del hotel
+
 4. Reservar una habitación
+
+    - [x] Analizar la BD
+
+    - [x] Wireframe del formulario que necesitamos
+
+    - [x] Definir la ruta que va a tener el formulario para la reserva
+
+    - [x] Convertir las tarjeta en links
+
+    - [x] Crear el controlador *reservas_controller.rb* para definir el método que controle la vista
+
+    - [x] Crear la vista en la carpeta de *app/views/reservas*
+
+    - [ ] Definir un método que capture y realice la lógica para almacenar una reserva
 
 ### Opcionales
 
 1. Iniciar sesión
+
+   - [x] Un botón que nos envíe al formulario para registrarnos
+   - [x] Instalar la gema *bcrypt* encargada de cifrar contraseñas e iniciar sesión
+   - [x] Agregar al modelo *Usuario.rb* el método de la gema bcrypt
+
+    ```ruby
+    class Usuario < ApplicationRecord
+        has_secure_password
+        belongs_to :rol # un usuario pertenece a un rol
+        has_many :reservas # un usuario tiene muchas reservas
+        has_many :habitaciones, through: :reservas # un usuario tiene muchas habitaciones a través de reservas
+        
+        validates :nombre,          presence: true
+        validates :identificacion,  presence: true, uniqueness: true
+        validates :telefono,        presence: true
+        validates :rol_id,          presence: true
+    end
+    ```
+
+   - [x] Definir una ruta que permita mostrar el formulario de registro
+
+   - [x] Definir un controlador y método que se haga cargo del formulario
+
+   - [x] Crear el archivo de la vista con el formulario
+
+   - [x] Definir un método para la lógica de registro de usuario
+
+   - [ ] Corregir el error de ruta al momento de tener problemas en el formulario de registro de usuario
+
+   - [ ] Definir un método para la lógica de iniciar sesión
+
 2. Tener vistas de administrador
 3. Buscador de hoteles por nombre en la página principal 🔁
