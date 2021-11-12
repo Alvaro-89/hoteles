@@ -2,6 +2,8 @@ class PaginasController < ApplicationController
 
   layout 'layout_cliente' #Definiendo el layout a utilizar
 
+  before_action :validar_sesion
+
   def principal
     # Recuperando todos mis hoteles en la base de datos
     @hoteles_encontrados = Hotel.all
@@ -43,8 +45,15 @@ class PaginasController < ApplicationController
     redirect_to root_path
   end
 
-  def registro
-    @usuario = Usuario.new
+
+  private
+
+  def validar_sesion
+    if cookies[:usuario_id]
+      @usuario = Usuario.find(cookies[:usuario_id]) #recordar que el "find" busca por id.
+    end
+  rescue
+    @usuario = nil
   end
 
 end

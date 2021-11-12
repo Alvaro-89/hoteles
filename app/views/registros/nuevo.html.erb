@@ -11,7 +11,7 @@
           <%= formulario.label      :nombre, class:'form-label'%>
           <%= formulario.text_field :nombre, class:'form-control' %>
           <% if @usuario.errors[:nombre].any? %>
-            <div>
+            <div class="text-danger">
               <%= @usuario.errors[:nombre].first %>
             </div>
           <% end %>
@@ -22,7 +22,7 @@
           <%= formulario.label      :num_identificacion, class:'form-label'%>
           <%= formulario.text_field :num_identificacion, class:'form-control' %>
           <% if @usuario.errors[:num_identificacion].any? %>
-            <div>
+            <div class="text-danger">
               <%= @usuario.errors[:num_identificacion].first %>
             </div>
           <% end %>
@@ -33,7 +33,7 @@
           <%= formulario.label      :telefono, class:'form-label'%>
           <%= formulario.text_field :telefono, class:'form-control' %>
           <% if @usuario.errors[:telefono].any? %>
-            <div>
+            <div class="text-danger">
               <%= @usuario.errors[:telefono].first %>
             </div>
           <% end %>
@@ -44,7 +44,7 @@
           <%= formulario.label          :password, class:'form-label'%>
           <%= formulario.password_field :password, class:'form-control' %>
           <% if @usuario.errors[:password].any? %>
-            <div>
+            <div class="text-danger">
               <%= @usuario.errors[:password].first %>
             </div>
           <% end %>
@@ -55,7 +55,7 @@
           <%= formulario.label          :password_confirmation, class:'form-label'%>
           <%= formulario.password_field :password_confirmation, class:'form-control' %>
           <% if @usuario.errors[:password_confirmation].any? %>
-            <div>
+            <div class="text-danger">
               <%= @usuario.errors[:password_confirmation].first %>
             </div>
           <% end %>
