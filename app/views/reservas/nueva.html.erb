@@ -1,0 +1,63 @@
+<h3 class="mt-3">FORMULARIO DE RESERVA</h3>
+
+<%= form_with(model: @reserva) do |formulario| %>
+
+  <!--Datos Habitación-->
+  <div class="card">
+    <div class="card-body">
+      <h5><%= @habitacion.nombre %></h5>
+      <h6><%= "#{@habitacion.hotel.nombre}, #{@habitacion.hotel.ciudad.nombre}" %> </h6>
+      <div>
+        <% @habitacion.hotel.estrellas.times do %>
+          ⭐
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!--Selección de fechas-->
+  <div class="card">
+    <div class="card-body">
+      <h5>Fechas</h5>
+      <div class="row">
+        <div class="col">
+          <%= formulario.label :fecha_ingreso, class: "form-label" %>
+          <%= formulario.date_field :fecha_ingreso, class: "form-control" %>
+          <% if @reserva.errors[:fecha_ingreso].any? %>
+            <div class="alert alert-danger" role="alert">
+              <%= @reserva.errors[:fecha_ingreso].first %>
+            </div>
+          <% end %>
+        </div>
+        <div class="col">
+          <%= formulario.label :fecha_salida, class: "form-label" %>
+          <%= formulario.date_field :fecha_salida, class: "form-control" %>
+          <% if @reserva.errors[:fecha_salida].any? %>
+            <div class="alert alert-danger" role="alert">
+              <%= @reserva.errors[:fecha_salida].first %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Datos Usuario-->
+  <div class="card">
+    <div class="card-body">
+      <h5><%= @usuario.nombre %></h5>
+      <h6>Teléfono: <%= @usuario.telefono %></h6>
+      <h6>Identificación: <%= @usuario.num_identificacion %></h6>
+    </div>
+  </div>
+
+  <!--Botón enviar-->
+  <div class="row justify-content-end">
+    <div class="col-2 mt-3">
+      <%= formulario.submit class: "btn btn-primary" do %>
+        Reservar por $<%= @habitacion.precio %> CLP
+      <% end %>
+    </div>
+  </div>
+
+<% end %>

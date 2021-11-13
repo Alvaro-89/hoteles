@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   # Reservaciones
   get 'reservas/:id_habitacion',    to:'reservas#nueva',    as:'reservas'
+  post 'reservas/:id_habitacion',   to:'reservas#guardar'
 
   #Roles
   get 'roles'               ,to: 'roles#listar'     ,as: 'roles' #as 'roles' es para darle un alias.
