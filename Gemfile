@@ -54,3 +54,6 @@ gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.4'
 group :production do
   gem 'pg' # Gema que instala y configura el aadapter de POSTGRESQL
 end
+
+gem 'ed25519'
+gem 'bcrypt_pbkdf'
