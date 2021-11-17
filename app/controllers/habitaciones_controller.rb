@@ -49,6 +49,7 @@ class HabitacionesController < ApplicationController
     @habitacion.precio          = params_habitacion[:precio]
     @habitacion.estado_reserva  = params_habitacion[:estado_reserva]
     @habitacion.hotel_id        = params_habitacion[:hotel_id]
+    @habitacion.fotos_habitacion = params_habitacion[:fotos_habitacion]
 
     if @habitacion.save
       redirect_to habitaciones_path
@@ -73,6 +74,6 @@ class HabitacionesController < ApplicationController
   end
 
   def params_habitacion
-    return params.require(:habitacion).permit(:nombre, :precio, :estado_reserva, :hotel_id)
+    return params.require(:habitacion).permit(:nombre, :precio, :estado_reserva, :hotel_id, fotos_habitacion: [])
   end
 end

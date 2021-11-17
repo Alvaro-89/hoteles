@@ -2,6 +2,12 @@ class Hotel < ApplicationRecord
   belongs_to :ciudad
   has_many :habitaciones
 
+  #Permite que tenga una foto
+  has_one_attached :foto_portada
+
+  #has_many_attached :foto_portada => SI quisiéramos que el hotel tuviera varias fotos.
+
+
   before_validation   :capitalizar_nombre
 
   validates :nombre, presence: true

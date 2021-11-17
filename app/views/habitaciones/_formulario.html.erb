@@ -35,6 +35,11 @@
     </div>
   <% end %>
 
+  <div class="mb-3">
+    <%= formulario.label :fotos_habitacion, class:'form-label' %>
+    <%= formulario.file_field :fotos_habitacion, multiple: true, class:'form-control' %>
+  </div>
+
   <div class="mb-3 text-end">
     <%= link_to "Cancelar", habitaciones_path, class: "btn btn-light mr-3" %>
     <%= formulario.submit 'Registrar', class: "btn btn-primary" %>

@@ -3,6 +3,8 @@ class Habitacion < ApplicationRecord
   has_many :reservas
   has_many :usuarios, through: :reservas
 
+  has_many_attached :fotos_habitacion
+
   validates :nombre, presence: true
   validates :precio, presence: true
   validates :hotel_id, presence: true

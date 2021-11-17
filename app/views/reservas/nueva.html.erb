@@ -1,5 +1,14 @@
 <h3 class="mt-3">FORMULARIO DE RESERVA</h3>
 
+  <!--Fotos habitación-->
+  <% if @habitacion.fotos_habitacion.attached? %>
+    <div class="col">
+      <% @habitacion.fotos_habitacion.each do|foto|%>
+        <%= image_tag foto %>
+      <% end %>
+    </div>
+  <% end %>
+
 <%= form_with(model: @reserva) do |formulario| %>
 
   <!--Datos Habitación-->
