@@ -19,8 +19,8 @@
       </div>
 
     <div class="col-lg-2">
-      <% if @usuario %>
-        <%= link_to "🙎‍♂️ #{@usuario.nombre}", "#", class: "btn btn-secondary text-white" %>
+      <% if @usuario_actual %>
+        <%= link_to "🙎‍♂️ #{@usuario_actual.nombre}", "#", class: "btn btn-secondary text-white" %>
       <% else %>
         <%= link_to "💻 Registrarse", registro_path, class:"btn btn-secondary text-white" %>
       <% end %>

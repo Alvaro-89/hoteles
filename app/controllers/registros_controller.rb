@@ -2,6 +2,11 @@ class RegistrosController < ApplicationController
   
   layout 'layout_cliente'
 
+  before_action :validar_sesion_para_el_registro #Método traído desde application_controller
+  # VALIDAR cuando NO tenga sesión mantener el formulario
+  # pero mostrar el botón de registro 
+  # CUANDO SI tenga sesión, debería redirigir hacia los hoteles
+
   #GET / registro
   def nuevo
     @usuario = Usuario.new
