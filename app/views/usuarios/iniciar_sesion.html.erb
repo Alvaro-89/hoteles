@@ -1,0 +1,34 @@
+<div class="row justify-content-center">
+  <div class="card w-50">
+    <div class="card-body">
+      <div class="card-title">
+        <h3>Iniciar Sesión</h3>
+      </div>
+      <%= form_with() do |formulario| %>
+        <div class="mb-3">
+          <%= formulario.label :num_identificacion, class: 'form-label' %>
+          <%= formulario.text_field :num_identificacion, class: 'form-control' %>
+          <% if flash[:usuario_incorrecto] %>
+            <div class="alert alert-warning" role="alert">
+              <%= flash[:usuario_incorrecto] %>
+            </div>
+          <% end %>
+        </div>
+        <div class="mb-3">
+          <%= formulario.label :password, class: 'form-label' %>
+          <%= formulario.password_field :password, class: 'form-control' %>
+            <% if flash[:clave_incorrecta] %>
+              <div class="alert alert-warning" role="alert">
+                <%= flash[:clave_incorrecta] %>
+              </div>
+            <% end %>
+        </div>
+        <%= formulario.submit "Iniciar Sesión", class: 'btn btn-primary text-white' %>
+      <% end %>
+
+    </div>
+  </div>
+</div>
+
+
+

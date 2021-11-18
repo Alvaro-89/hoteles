@@ -6,7 +6,7 @@
       <%= link_to "H.Campestre 🌴", root_path, class: 'text-decoration-none text-white fs-3'  %>
       </div>
 
-      <div class="col-lg-7 col-md-12">
+      <div class="col-lg-5 col-md-12">
         <%= form_with(url:"/", method: "get", class:'row') do |formulario| %>
           <div class="col-8 text-center">
             <%= formulario.text_field :busqueda, class:'form-control', placeholder: "Buscar hotel o ciudad" %>
@@ -18,11 +18,29 @@
         <% end %>
       </div>
 
-    <div class="col-lg-2">
+    <div class="col-lg-4">
       <% if @usuario_actual %>
-        <%= link_to "🙎‍♂️ #{@usuario_actual.nombre}", "#", class: "btn btn-secondary text-white" %>
+        <div class="nav-item dropdown">
+          <%= link_to "👦 #{@usuario_actual.nombre}", usuario_path, class: 'btn btn-primary text-white dropdown-toggle', id: 'navbarDropdown', role: 'button', 'data-bs-toggle':'dropdown', 'aria-expanded': false %>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <%= link_to "Ver el perfil", usuario_path, class: 'dropdown-item' %>
+            </li>
+            <li><hr class="dropdown-divider"></li>
+            <li>
+              <%= link_to "Cerrar sesión", cerrar_sesion_path, method: :delete, class: 'dropdown-item' %>
+            </li>
+          </ul>
+        </div>
       <% else %>
-        <%= link_to "💻 Registrarse", registro_path, class:"btn btn-secondary text-white" %>
+        <div class="row">
+          <div class="col">
+            <%= link_to "💻 Registrarse", registro_path, class: 'btn btn-primary text-white' %>
+          </div>
+          <div class="col">
+            <%= link_to "🚪 Iniciar sesión", iniciar_sesion_path, class: 'btn btn-primary text-white' %>
+          </div>
+        </div>
       <% end %>
     </div>
 

@@ -17,7 +17,8 @@ class RegistrosController < ApplicationController
     @usuario = Usuario.new(params_usuario)
     @usuario.rol = Rol.find_by(rol: 'Cliente')
     if @usuario.save
-      cookies[:usuario_id] = @usuario.id #Estamos definiendo la cookie que mantendrá iniciada la sesión.
+      # Se cambió cookie por session
+      session[:usuario_id] = @usuario.id #Estamos definiendo la cookie que mantendrá iniciada la sesión.
       redirect_to root_path
     else
       render :nuevo

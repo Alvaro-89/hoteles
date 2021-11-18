@@ -54,17 +54,17 @@
   <!--Datos Usuario-->
   <div class="card">
     <div class="card-body">
-      <h5><%= @usuario.nombre %></h5>
-      <h6>Teléfono: <%= @usuario.telefono %></h6>
-      <h6>Identificación: <%= @usuario.num_identificacion %></h6>
+      <h5><%= @usuario_actual.nombre %></h5>
+      <h6>Teléfono: <%= @usuario_actual.telefono %></h6>
+      <h6>Identificación: <%= @usuario_actual.num_identificacion %></h6>
     </div>
   </div>
 
   <!--Botón enviar-->
   <div class="row justify-content-end">
     <div class="col-2 mt-3">
-      <%= formulario.submit class: "btn btn-primary" do %>
-        Reservar por $<%= @habitacion.precio %> CLP
+      <%= formulario.button type:'submit', class: "btn btn-primary" do %>
+        Reservar por <%= number_to_currency(@habitacion.precio, unit:'CLP', delimiter:'.', precision:0) %>
       <% end %>
     </div>
   </div>
