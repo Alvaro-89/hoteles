@@ -1,6 +1,7 @@
 #Esto tiene que ir necesariamente con el mismo nombre del modelo pero con mayúscula
 class RolesController < ApplicationController
   
+  before_action :validar_sesion_administrador
   before_action :asignar_rol, only: [:editar, :actualizar, :eliminar]
 
   #GET /roles

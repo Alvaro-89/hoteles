@@ -1,7 +1,6 @@
 class ReservasController < ApplicationController
 
   layout 'layout_cliente'
-
   before_action :validar_sesion_redirigiendo_al_registro #Método traído desde application_controller
   # CASO PARTICULAR
   # Cuando NO exista la sesión debemos enviarlo a registrarse

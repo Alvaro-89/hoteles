@@ -6,7 +6,7 @@ class PaginasController < ApplicationController
 
   def principal
     # Recuperando todos mis hoteles en la base de datos
-    @hoteles_encontrados = Hotel.all
+    @hoteles_encontrados = Hotel.includes(:ciudad).shuffle
     @ciudades_encontradas = Ciudad.all
     
     if params[:busqueda]

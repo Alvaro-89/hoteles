@@ -1,10 +1,11 @@
 class HotelesController < ApplicationController
 
+  before_action :validar_sesion_administrador
   before_action :asignar_hotel, only: [:mostrar, :editar, :actualizar, :eliminar]
 
   #GET / hoteles
   def listar
-    @hoteles = Hotel.all
+    @hoteles = Hotel.includes(:ciudad) #remplazamos el .all por .includes para tener menos consultas y gastar menos recursos.
   end
 
   #GET / nuevo / hoteles
