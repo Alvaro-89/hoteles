@@ -8,6 +8,7 @@
 Reserva.destroy_all
 Habitacion.destroy_all
 Hotel.destroy_all
+Usuario.destroy_all
 
 # Creando los roles
 Rol.create([
@@ -17,7 +18,7 @@ Rol.create([
 puts "Roles creados 💾"
 
 Usuario.create([
-    { nombre: 'admin', telefono: '999999', num_identificacion: 'admin', password: 'admin', rol: Rol.find_by(rol: 'Administrador') },
+    { nombre: 'admin', telefono: '999999', num_identificacion: 'administrador', password: 'admin', rol: Rol.find_by(rol: 'Administrador') },
     { nombre: 'alvaro', telefono: '777777', num_identificacion: 'alvaro-001', password: 'qwerty', rol: Rol.find_by(rol: 'Cliente') }
 ])
 puts "Usuarios creados 💾"

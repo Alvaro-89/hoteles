@@ -26,6 +26,7 @@ class UsuariosController < ApplicationController
   #POST / iniciar_sesion
   def crear_sesion #Le pusimos crear sesión para iniciar porque se utiliza el método post para un usuario que ya existe
     usuario_encontrado = Usuario.find_by(num_identificacion: params[:num_identificacion])
+    # byebug
     if usuario_encontrado # ¿el usuario existe?
       if usuario_encontrado.authenticate(params[:password])
         session[:usuario_id] = usuario_encontrado.id

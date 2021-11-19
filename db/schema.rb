@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_16_171408) do
+ActiveRecord::Schema.define(version: 2021_11_19_152903) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 2021_11_16_171408) do
 
   create_table "usuarios", force: :cascade do |t|
     t.string "nombre"
-    t.integer "num_identificacion"
+    t.string "num_identificacion"
     t.string "telefono"
     t.string "password_digest"
     t.integer "rol_id", null: false
