@@ -29,6 +29,7 @@ class ReservasController < ApplicationController
     end
   end
 
+
   private
 
   def params_reserva
