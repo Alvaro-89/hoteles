@@ -5,6 +5,8 @@ class PaginasController < ApplicationController
   before_action :validar_sesion_sin_redirigir #Método traído desde application_controller
 
   def principal
+    ReservaMailer.enviar_confirmacion.deliver_later
+
     # Recuperando todos mis hoteles en la base de datos
     @hoteles_encontrados = Hotel.includes(:ciudad).shuffle
     @ciudades_encontradas = Ciudad.all
